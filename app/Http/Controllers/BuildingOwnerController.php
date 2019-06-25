@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\BuildingOwners;
+use App\Booking;
 
 class BuildingOwnerController extends Controller
 {
@@ -12,6 +13,12 @@ class BuildingOwnerController extends Controller
 
         $rooms = BuildingOwners::where('owner_id', Session::get('id'))->get();
         return view('backend.owners.index', compact('rooms'));
+    }
+
+    public function bookingList(Request $request){
+        $builds = Booking::where('owner_id', Session::get('id'))->get();
+
+        return view('backend.owners.bookingList', compact('builds'));
     }
 
     public function create(Request $request){
@@ -109,6 +116,28 @@ class BuildingOwnerController extends Controller
         $data->save();
 
         return redirect()->route('owners.index')->with('alert-success', 'Success Change Room Status!');
+    }
+
+    public function statusBooking(Request $request, $id){
+        if(!$request->id){
+            return redirect()->back();
+        }
+
+        $data = Booking::where('id', $id)->first();
+
+        if($data->status == 1){
+            $data->status = 0;
+        }
+        elseif($data->status == 0){
+            $data->status = 2;
+        }
+        else{
+            $data->status = 1;
+        }
+
+        $data->save();
+
+        return redirect()->route('owners.bookingList')->with('alert-success', 'Success Change Your Booking Status!');
     }
 
     public function delete($id){

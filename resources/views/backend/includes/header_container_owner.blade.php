@@ -17,7 +17,7 @@
             <ul class="d-flex flex-row align-items-start justify-content-start">
                 <li><a href="{{route('owners.index')}}"}}>Home</a></li>
                 <li><a href="{{route('owners.create')}}">Create</a></li>
-                <li><a href="#">Booking List</a></li>
+                <li><a href="{{route('owners.bookingList')}}">Booking List</a></li>
                 <li><a href="{{route('auth.logout')}}">LogOut</a></li>
             </ul>
         </nav>

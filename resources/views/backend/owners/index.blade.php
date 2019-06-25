@@ -15,28 +15,6 @@
                     @endif
                 </div>
 
-{{--                @if(sizeof($rooms) > 0)--}}
-{{--                    <form class="d-flex" action="{{ url()->current() }}" method="get">--}}
-{{--                        <div class="col-md-10 col-6">--}}
-{{--                            <div class="input-group mb-3">--}}
-{{--                                <input type="text" class="form-control" placeholder="cari nama merk..." name="q" value="{{ $q }}">--}}
-{{--                                <div class="input-group-append">--}}
-{{--                                    <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-md-6 col-6">--}}
-{{--                            <div class="input-group mb-3">--}}
-{{--                                <select class="form-control" name="order" onchange="this.form.submit()">--}}
-{{--                                    <option value="">Urutan Tampil</option>--}}
-{{--                                    <option value="asc" @if($orderBy == "asc")selected @endif>A-Z</option>--}}
-{{--                                    <option value="desc" @if($orderBy == "desc")selected @endif>Z-A</option>--}}
-{{--                                </select>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </form>--}}
-{{--                @endif--}}
-
                 @forelse($rooms as $room)
                     <div class="col-sm-12 mb-3">
                         <div class="card">

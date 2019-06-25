@@ -34,6 +34,8 @@ Route::group(['middleware' => 'auth.login'], function (){
     Route::group(['prefix' => 'takers'], function (){
         Route::get('/', 'TakersController@index')->name('takers.index');
         Route::get('/checkin/{id}', 'TakersController@checkin')->name('takers.checkin');
+        Route::post('/bookingPro', 'TakersController@bookingPro')->name('takers.booking');
+        Route::get('/bookingreq', 'TakersController@bookingreq')->name('takers.bookingreq');
     });
 
     Route::group(['prefix' => 'owners'], function (){
@@ -46,6 +48,8 @@ Route::group(['middleware' => 'auth.login'], function (){
         Route::get('/status/{id}', 'BuildingOwnerController@status')->name('owners.status');
         Route::get('/delete/{id}', 'BuildingOwnerController@delete')->name('owners.delete');
         Route::post('/restore', 'BuildingOwnerController@restore')->name('owners.restore');
+        Route::get('/bookingList', 'BuildingOwnerController@bookingList')->name('owners.bookingList');
+        Route::get('/statusBooking/{id}', 'BuildingOwnerController@statusBooking')->name('owners.statusBooking');
     });
 
 

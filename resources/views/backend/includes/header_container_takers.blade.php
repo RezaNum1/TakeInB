@@ -13,7 +13,7 @@
         <nav class="main_nav">
             <ul class="d-flex flex-row align-items-start justify-content-start">
                 <li><a href="{{route('takers.index')}}"}}>Home</a></li>
-                <li><a href="#">Profile</a></li>
+                <li><a href="{{route('takers.bookingreq')}}">Booking Request</a></li>
                 <li><a href="{{route('auth.logout')}}">LogOut</a></li>
             </ul>
         </nav>

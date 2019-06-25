@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <label class="label" for="price" style="font-size: 20px;">Price:</label>
                     <div class="input-group">
-                        <a style="font-size: 30px;color: #fa8231;font-weight: bolder">Rp. {{$build>price}}</a>
+                        <a style="font-size: 30px;color: #fa8231;font-weight: bolder">Rp. {{$build->price}}</a>
                     </div>
                 </div>
                 <div class="form-group">
@@ -83,12 +83,12 @@
                             </div>
                             <div class="modal-body">
                                 @foreach($takers as $taker)
-                                <form method="post" action="{{route('takers.index')}}">
+                                <form method="post" action="{{route('takers.bookingreq')}}">
                                     {{csrf_field()}}
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label" style="color: tomato;font-family: 'Ultra', serif;font-size: 20px;">{{$build->name}}</label><br>
                                         <label for="recipient-name" class="col-form-label"  style="color: #2f3542;font-size: 15px; position:relative;bottom: 20px;">{{$build->address, $build->city}}, Indonesia</label>
-                                        <img src="{{ url('uploads/file/'.$room->file) }}" id="myImg" style="position: relative;width: 100%; height: 200px; bottom: 15px;">
+                                        <img src="{{ url('uploads/file/'.$build->file) }}" id="myImg" style="position: relative;width: 100%; height: 200px; bottom: 15px;">
                                         <div class="checks">
                                             <input type="checkbox" name="vehicle" style="position: relative; top: 25px;" required><label style="text-align: center">Terms and conditions apply, please give a check if you<label style="text-align: center"> have read the conditions</label></label>
                                         </div>
@@ -97,32 +97,26 @@
                                     <div class="form-group">
                                         <input type="text" class="form-control"  name="customer_id" value="{{$taker->id}}" hidden>
                                         <input type="text" class="form-control"  name="owner_id" value="{{$build->owner_id}}" hidden>
-                                        <input type="text" class="form-control" name="room_id" value="{{$build->id}}" hidden>
+                                        <input type="text" class="form-control" name="building_id" value="{{$build->id}}" hidden>
+                                        <input type="text" class="form-control" name="price" value="{{$build->price}}" hidden>
                                     </div>
-                                    <div class="card">
                                         <div class="form-group">
-                                            <label for="recipient-name" class="col-form-label" style="color: black">Check-In Date</label>
-                                            <input type="date" class="form-control checks-in" id="checks-in" name="check-in"  min="{{$dateCurrent}}" required>
+                                            <label for="recipient-name" class="col-form-label" style="color: black">Booking Date</label>
+                                            <input type="date" class="form-control checks-in" id="booking_date" name="booking_date"  min="{{$dateCurrent}}" required>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="message-text" class="col-form-label" style="color: black">Check-Out Date</label>
-                                            <input type="date" class="form-control checks-out" id="checks-out" name="check-out" min="{{$dateCurrent}}" required>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="duration" class="col-form-label" style="color: black">Duration</label>
+                                        <select name="duration" class="dropdown-item">
+                                            <option value="1">1 - Hours</option>
+                                            <option value="2">2 - Hours</option>
+                                            <option value="3">3 - Hours</option>
+                                            <option value="4">4 - Hours</option>
+                                        </select>
                                     </div>
-                                    <div class="col-md-12 mb-3">
-                                        <h3>Total: <span id="total-price">0</span></h3>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label" style="color: black">Message</label>
+                                        <textarea class="form-control" name="description" placeholder="Please input time that you gonna take at the day and description your event...."></textarea>
                                     </div>
-
-{{--                                    <script>--}}
-{{--                                        var date_diff_indays = function (date1, date2) {--}}
-{{--                                            dt1 = new Date(date1);--}}
-{{--                                            dt2 = new Date(date2);--}}
-{{--                                            return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDay()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDay()))/(1000*60*60*24));--}}
-{{--                                        }--}}
-
-{{--                                        var date1 = document.getElementById('check-in').value;--}}
-{{--                                        var date2 = document.getElementById('check-out').value;--}}
-{{--                                    </script>--}}
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-success submit-btn btn-block">Booking</button>
                                     </div>
